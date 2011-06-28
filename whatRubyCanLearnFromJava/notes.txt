@@ -1,0 +1,89 @@
+What ruby can learn from java
+
+SUMMARY:
+
+  Java gets a lot of bad press from the ruby community. We know it's the next
+  COBOL, but there are still ideas in the java community that are very much worth
+  learning. I'll go over what I've seen that I think the ruby community should learn,
+  and provide a few concrete examples and suggestions.
+
+
+
+TALKING POINTS:
+
+  the guys who are serious about testing in java...
+    testing isn't as big in java land
+    but there's a small community of consultants pushing it, and because they have to defend it, they're pushing the boundries
+
+  coupling in tests (factories let you create a big ball of mud quickly)
+    avoid model chains
+
+    when you use real model objects everywhere you're sending the false impression that it matters that we use these everywhere,
+    which implies that your app is a big ball of mud (if your specs let you have a big ball of mud, you'll get one)
+
+  integration tests and Factories tend to turn your app into a big ball of mud
+    loose coupling means you can require your file and test some useful logic without requiring spec helper
+
+  fixtures?
+    does coupling really matter?
+      for small/non-novel apps it might not
+
+  real refactoring
+    ecomba's vim plugin
+    names of refactorings are important
+      the meaning of the word refactoring has been lost, and it's an important idea
+
+STUFF I want to squeeze in:
+  chelimsky's 7 layer blog post: http://blog.davidchelimsky.net/2008/12/11/a-case-against-a-case-against-mocking-and-stubbing/
+
+  rails wants every class to fit into a "bucket" -- I have models, controllers, and helpers, which is it?
+
+  mention twitter search ditching rails
+
+
+STUFF that didn't make the cut:
+
+  #  show some *real* refactoring in java -- refactoring chains (this probably doesn't belong in this talk)
+  DI -- the whole point of IoC is to reduce coupling (can I fit this in? seems big)
+      https://github.com/mattyoho/basic_assumption ??
+  caveat: isolation testing in java is different
+
+  good design (large collection of small classes, not the other way around)
+
+  is requiring active_support a big deal anymore? it is if you're writing a gem, not so much for a rails app
+
+  talk about interfaces?
+  annotations?
+
+  we don't do a lot of OO design in ruby, despite the fact that it's a completely OO language
+
+  Lesson the first (hand wavy?)
+    pojos are awesome -- when was the last time you saw a poro?
+    frameworks in java tend to be built around pojos, and with good reason
+
+  why does this matter? (no demo)
+    fast tests
+    autospec/autospec-growl.  this works brilliantly on poros, but it winds up being slow quickly
+
+  how do we keep our tests this fast?
+    good design
+    SOLID
+    isolation testing
+    POROs
+
+  NOTE:
+    in java we can trust that the method we're calling does what we hope it does, in ruby the best we can is responds_to?
+      (when talking about interfaces)
+      traits are somewhere in between
+
+  advice I'd like to give:
+    keep your framework touching code as small as possible (value poros)
+    integration tests are always the easy way out, and the fastest way to deliver value, but they tend to scale poorly
+
+  TODO:
+    example: wrap a named scope with a function so you can test a command without the query
+    refactoring: the punishment for making a mess is much higher
+      the best defense is a good offense
+
+
+
